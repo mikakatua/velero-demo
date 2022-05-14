@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: velero-example
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: busybox
+  name: example-pod
+  namespace: velero-example
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command:
+    - sleep
+    - infinity
+    volumeMounts:
+      - name: data
+        mountPath: "/target"
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: example-pvc
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: example-pvc
+  namespace: velero-example
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: fast-disks
