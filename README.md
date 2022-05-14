@@ -1,5 +1,7 @@
 # Velero Backup & Restore
-Requirements: [Minikube cluster using the docker driver](https://minikube.sigs.k8s.io/docs/drivers/docker/)
+Requirements: 
+* Minikube cluster using the [docker driver](https://minikube.sigs.k8s.io/docs/drivers/docker/)
+* Of course the [Velero CLI](https://velero.io/docs/v1.8/basic-install/#install-the-cli)
 
 ## MinIO setup
 Run a container with MinIO (in the same network as minikube):
